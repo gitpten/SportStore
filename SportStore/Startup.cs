@@ -11,6 +11,8 @@ using SportStore.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace SportStore
 {
@@ -40,6 +42,12 @@ namespace SportStore
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"node_modules")),
+                RequestPath = new PathString("/node_modules")
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -50,6 +58,8 @@ namespace SportStore
                     name: "default",
                     template: "{controller=Product}/{action=List}/{id?}");
             });
+
+
             SeedData.EnsurePopulated(app);
         }
     }
