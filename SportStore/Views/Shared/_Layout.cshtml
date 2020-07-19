@@ -9,10 +9,12 @@
     <title>SportStore</title>
 </head>
 <body>
-    <div class="row">
-        <a class="col navbar-brand" href="#">Sports Store</a>
-        <div class="col-4 text-right">
-            @await Component.InvokeAsync("CartSummary")
+    <div class="navbar navbar-dark bg-dark" role="navigation">
+        <div class="row">
+            <a class="col navbar-brand" href="#">Sports Store</a>
+            <div class="col-4 text-right">
+                @await Component.InvokeAsync("CartSummary")
+            </div>
         </div>
     </div>
     <div class="row m-1 p-1">
