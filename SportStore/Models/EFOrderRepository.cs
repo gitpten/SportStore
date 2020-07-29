@@ -27,6 +27,9 @@ namespace SportStore.Models
             {
                 context.Orders.Add(order);
             }
+            
+            
+          
             context.SaveChanges();
         }
     }
